@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
 <body>
  <div class="container">
   <form action="" method="POST" class="login-email">
-            <center> <img src="https://d.top4top.io/p_227024vre1.png" width="150px" height="140px"></center>
+            <center> <img src="https://d.top4top.io/p_227024vre1.png" width="80px" height="80pxx"></center>
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
    <div class="input-group">
     <input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
