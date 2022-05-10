@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-$id_user = $_SESSION['username'];
+$id_user = $_SESSION['nik'];
 $tanggal = $_POST['tanggal'];
 $waktu   = $_POST['waktu'];
 $lokasi  = $_POST['lokasi'];

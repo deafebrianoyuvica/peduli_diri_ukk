@@ -1,4 +1,16 @@
 <div class="card">
+
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>Tulis Catatan</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
 	<div class="card-header">
 		<a href="Dashboard.php" class="btn btn-primary btn-icon-split">
            	<span class="icon text-white-50">

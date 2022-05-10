@@ -1,4 +1,16 @@
 <div class="card">
+
+     <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>Riwayat Perjalanan</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
 	<div class="card-header">
 		<a href="Dashboard.php" class="btn btn-primary btn-icon-split">
            	<span class="icon text-white-50">
@@ -25,7 +37,7 @@
                                         <?php 
                                         $no = 1;
                                         include'koneksi.php';
-                                        $sql = "SELECT*FROM catatan WHERE id_user ='$_SESSION[username]'";
+                                        $sql = "SELECT*FROM catatan WHERE id_user ='$_SESSION[nik]'";
                                         $query = mysqli_query($koneksi, $sql);
                                         foreach ($query as $value) {
                                         

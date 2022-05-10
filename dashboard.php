@@ -1,8 +1,8 @@
 <?php 
- 
+
 session_start();
  
-if (!isset($_SESSION['username'])) { ?>
+if (!isset($_SESSION['nik'])) { ?>
     <script>
         alert('Maaf Anda Harus Login Terlebih Dahulu!')
         window.location.assign('index.php');
@@ -41,8 +41,8 @@ if (!isset($_SESSION['username'])) { ?>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="assets/index3.html" class="brand-link">
-      <img src="assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="dashboard.php" class="brand-link">
+      <img src="images/download.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Peduli Diri</span>
     </a>
 
@@ -51,10 +51,12 @@ if (!isset($_SESSION['username'])) { ?>
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="https://c.top4top.io/p_2270xsykj1.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="images/user.svg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <?php echo "<h5><font color='#fff'>". $_SESSION['username'] ."</font></h5>"; ?>
+          <?php 
+          echo "<h5><font color='#fff'>" . $_SESSION['nik'] ."</font></h5>"; 
+          ?>
         </div>
       </div>
 
@@ -62,14 +64,14 @@ if (!isset($_SESSION['username'])) { ?>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-            <a href="" class="nav-link">
+          <!-- <li class="nav-item">
+            <a href="?page=overview" class="nav-link">
               <i class="nav-icon fas fa-desktop"></i>
               <p>
                 Dashboard
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="?page=tulis_catatan" class="nav-link">
               <i class="nav-icon fas fa-pencil-alt"></i>
@@ -83,6 +85,14 @@ if (!isset($_SESSION['username'])) { ?>
               <i class="nav-icon fas fa-clone"></i>
               <p>
                 Riwayat Perjalanan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="?page=hasil_pemeriksaan" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Hasil Pemeriksaan
               </p>
             </a>
           </li>
@@ -103,19 +113,11 @@ if (!isset($_SESSION['username'])) { ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Catatan Perjalanan</h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
     <!-- Main content -->
     <section class="content">
+
+      <!-- <h2 class="my-3 mx-3">Selamat datang di aplikasi Peduli Diri</h2> -->
 
  <?php 
 
@@ -124,13 +126,18 @@ if (!empty(@$_GET['page'])) {
         case 'tulis_catatan':
            include'tulis_catatan.php';
             break;
+        case 'tambah_pemeriksaan':
+           include'tambah_pemeriksaan.php';
+            break;
         case 'riwayat_perjalanan':
             include'riwayat_perjalanan.php';
             break;
         case 'edit_catatan':
             include'edit_catatan.php';
             break;
-        
+        case 'hasil_pemeriksaan':
+            include 'hasil_pemeriksaan.php';
+            break;
         default:
            echo "<h3>Halaman Tidak Ditemukan</h3>";
             break;
@@ -146,9 +153,9 @@ if (!empty(@$_GET['page'])) {
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Pedui Diri</b>
+      <b>Peduli Diri</b>
     </div>
-    <strong>Copyright &copy; <?php echo date ("Y"); ?><a href="awisnu545@gmail.com">Wisnu193</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?php echo date ("Y"); ?><a href="awisnu545@gmail.com"> Peduli Diri </a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

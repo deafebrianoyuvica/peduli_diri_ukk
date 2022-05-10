@@ -6,38 +6,36 @@ error_reporting(0);
 
 session_start();
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['nama_lengkap'])) {
     header("Location: index.php");
 }
 
 if (isset($_POST['submit'])) {
- $username = $_POST['username'];
- $email = $_POST['email'];
- $password = md5($_POST['password']);
- $cpassword = md5($_POST['cpassword']);
+ $nik = $_POST['nik'];
+ $nama_lengkap = $_POST['nama_lengkap'];
 
  if ($password == $cpassword) {
-  $sql = "SELECT * FROM users WHERE email='$email'";
+  $sql = "SELECT * FROM users WHERE nik='$nik'";
   $result = mysqli_query($koneksi, $sql);
   if (!$result->num_rows > 0) {
-   $sql = "INSERT INTO users (username, email, password)
-     VALUES ('$username', '$email', '$password')";
+   $sql = "INSERT INTO users (nik, nama_lengkap)
+     VALUES ('$nik', '$nama_lengkap')";
    $result = mysqli_query($koneksi, $sql);
    if ($result) {
     echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-    $username = "";
-    $email = "";
-    $_POST['password'] = "";
-    $_POST['cpassword'] = "";
+    $nik = "";
+    $nama_lengkap = "";
+    // $_POST['password'] = "";
+    // $_POST['cpassword'] = "";
    } else {
     echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
    }
   } else {
-   echo "<script>alert('Woops! Email Sudah Terdaftar.')</script>";
+   echo "<script>alert('Woops! NIK Sudah Terdaftar.')</script>";
   }
   
  } else {
-  echo "<script>alert('Password Tidak Sesuai')</script>";
+  echo "<script>alert('NIK atau Nama Lengkap Tidak Sesuai')</script>";
  }
 }
 
@@ -49,34 +47,39 @@ if (isset($_POST['submit'])) {
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
  <link rel="stylesheet" type="text/css" href="style.css">
+ <link rel="stylesheet" href="css/style.css">
 
  <title>Peduli Diri - Register</title>
 </head>
 <body>
- <div class="container">
-  <form action="" method="POST" class="login-email">
-            <center> <img src="https://d.top4top.io/p_227024vre1.png" width="80px" height="80pxx"></center>
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
-   <div class="input-group">
-    <input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
-   </div>
-   <div class="input-group">
-    <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-   </div>
-   <div class="input-group">
-    <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+
+<!-- Sign up form -->
+  <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Register</h2>
+                        <form action="" method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="nik"><img src="icon/postcard-fill.svg"></label>
+                                <input type="text" placeholder="NIK" name="nik" value="<?php echo $nik; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_lengkap"><img src="icon/person-fill.svg"></label>
+                                <input type="text" placeholder="Nama Lengkap" name="nama_lengkap" value="<?php echo $nama_lengkap; ?>" required>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="submit" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/login.svg" alt="sing up image"></figure>
+                        <a href="index.php" class="signup-image-link">Sudah punya akun</a>
+                    </div>
+                </div>
             </div>
-            <div class="input-group">
-    <input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
-   </div>
-   <div class="input-group">
-    <button name="submit" class="btn">Register</button>
-   </div>
-   <p class="login-register-text">Anda sudah punya akun? <a href="index.php">Login </a></p>
-  </form>
- </div>
+        </section>
 </body>
 </html>

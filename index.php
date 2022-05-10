@@ -6,22 +6,22 @@ error_reporting(0);
 
 session_start();
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['nik'])) {
     header("Location: Dashboard.php");
 }
 
 if (isset($_POST['submit'])) {
- $email = $_POST['email'];
- $password = md5($_POST['password']);
+ $nik = $_POST['nik'];
+ $nama_lengkap = $_POST['nama_lengkap'];
 
- $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+ $sql = "SELECT * FROM users WHERE nik='$nik' AND nama_lengkap='$nama_lengkap'";
  $result = mysqli_query($koneksi, $sql);
  if ($result->num_rows > 0) {
   $row = mysqli_fetch_assoc($result);
-  $_SESSION['username'] = $row['username'];
+  $_SESSION['nik'] = $row['nik'];
   header("Location: Dashboard.php");
  } else {
-  echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+  echo "<script>alert('NIK atau Nama Lengkap Anda salah. Silahkan coba lagi!')</script>";
  }
 }
 
@@ -29,36 +29,46 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html>
-<head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
 
- <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Aplikasi Peduli Diri - Login</title>
+    </head>
 
- <title>Aplikasi Peduli Diri - Login</title>
-</head>
-<body>
- <div class="alert alert-warning" role="alert">
-  <?php echo $_SESSION['error']?>
- </div>
+    <body>
 
- <div class="container">
-  <form action="" method="POST" class="login-email">
-   <center> <img src="https://d.top4top.io/p_227024vre1.png" width="80px" height="80px"></center>
-   <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-   <div class="input-group">
-    <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-   </div>
-   <div class="input-group">
-    <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
-   </div>
-   <div class="input-group">
-    <button name="submit" class="btn">Login</button>
-   </div>
-   <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
-  </form>
- </div>
-</body>
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="images/login2.svg" alt="sing up image"></figure>
+                        <a href="register.php" class="signup-image-link">Saya pengguna baru</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Login</h2>
+
+                        <form action="" method="POST" class="login-email" id="login-form">
+                            <div class="form-group">
+                                <label for="nik"><img src="icon/postcard-fill.svg"></label>
+                                <input type="text" placeholder="NIK" name="nik" value="<?php echo $nik; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_lengkap"><img src="icon/person-fill.svg"></label>
+                                <input type="text" placeholder="Nama Lengkap" name="nama_lengkap" value="<?php echo $_POST['nama_lengkap']; ?>" required>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="submit" id="signup" class="form-submit" value="Login"/>
+                            </div>
+                        </form>     
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
 </html>
