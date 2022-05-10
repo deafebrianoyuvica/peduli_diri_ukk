@@ -135,6 +135,9 @@ if (!empty(@$_GET['page'])) {
         case 'edit_catatan':
             include'edit_catatan.php';
             break;
+        case 'edit_pemeriksaan':
+            include'edit_pemeriksaan.php';
+            break;
         case 'hasil_pemeriksaan':
             include 'hasil_pemeriksaan.php';
             break;
